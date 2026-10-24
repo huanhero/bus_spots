@@ -1,0 +1,40 @@
+---
+layout: default
+---
+<main id="main" class="wrap page">
+  <a class="back" href="{{ '/' | relative_url }}">← Back to all buses</a>
+
+  <div class="blind" role="img" aria-label="Destination sign: {% if page.route %}route {{ page.route | escape }}, {% endif %}{{ page.destination | default: page.title | escape }}">
+    {% if page.route %}<span class="blind-route">{{ page.route | escape }}</span>{% endif %}
+    <span class="blind-dest">{{ page.destination | default: page.title | escape }}</span>
+  </div>
+
+  <div class="detail">
+    <div class="detail-main">
+      <figure class="detail-photo">
+        {% if page.photo %}<img src="{{ page.photo | relative_url }}" alt="{{ page.title | escape }}{% if page.route %}, route {{ page.route | escape }}{% endif %}">{% endif %}
+      </figure>
+      <article class="words">
+        <h1>{{ page.title | escape }}</h1>
+        <h2 class="words-label">In my words</h2>
+        <div class="prose">{{ content }}</div>
+      </article>
+    </div>
+
+    <aside class="details" aria-label="Bus details">
+      <h2 class="details-head">Bus details</h2>
+      <dl>
+        {% if page.route %}<div><dt>Route</dt><dd>{{ page.route | escape }}</dd></div>{% endif %}
+        {% if page.type %}<div><dt>Type</dt><dd>{{ page.type | escape }}</dd></div>{% endif %}
+        {% if page.operator %}<div><dt>Operator</dt><dd>{{ page.operator | escape }}</dd></div>{% endif %}
+        {% if page.fleet %}<div><dt>Fleet number</dt><dd>{{ page.fleet | escape }}</dd></div>{% endif %}
+        {% if page.date %}<div><dt>Spotted on</dt><dd>{{ page.date | date: "%-d %B %Y" }}</dd></div>{% endif %}
+      </dl>
+    </aside>
+  </div>
+
+  <nav class="pager" aria-label="More buses">
+    {% if page.next %}<a class="pill-link" href="{{ page.next.url | relative_url }}">← Newer bus</a>{% else %}<span></span>{% endif %}
+    {% if page.previous %}<a class="pill-link pill-dark" href="{{ page.previous.url | relative_url }}">Older bus →</a>{% endif %}
+  </nav>
+</main>

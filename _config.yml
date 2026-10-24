@@ -1,0 +1,41 @@
+# Site settings. Edit the values in quotes; keep the indentation as it is.
+# After a change, GitHub rebuilds the site in about a minute.
+
+title: "[Nickname]'s Bus Spots"
+tagline: "Via every route in town"
+nickname: "[Nickname]"
+route_badge: "88"            # the number shown in the little LED sign in the header
+
+# Where the site lives: https://huanhero.github.io/bus_spots/
+url: "https://huanhero.github.io"
+baseurl: "/bus_spots"
+
+# true  = ask search engines (Google etc.) not to list this site
+# false = allow it to appear in search results
+hide_from_search: true
+
+# The filter buttons on the gallery. Keep in sync with the "Bus type"
+# options in .pages.yml.
+bus_types:
+  - Double-decker
+  - Single-decker
+  - Electric
+  - Coach
+
+collections:
+  buses:
+    output: true
+    permalink: /buses/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: buses
+    values:
+      layout: bus
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor

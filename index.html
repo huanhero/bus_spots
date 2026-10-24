@@ -1,0 +1,50 @@
+---
+layout: default
+---
+{% assign buses = site.buses | sort: "date" | reverse %}
+<main id="main" class="wrap page">
+  <div class="intro">
+    <h1>The collection</h1>
+    <p>{{ buses.size }} {% if buses.size == 1 %}bus{% else %}buses{% endif %} spotted so far. Tap any photo to read about it.</p>
+  </div>
+
+  {% if buses.size > 0 %}
+  <div class="filters" role="group" aria-label="Filter by bus type" data-filters hidden>
+    <button type="button" class="pill" data-filter="all" aria-pressed="true">All</button>
+    {% for t in site.bus_types %}<button type="button" class="pill" data-filter="{{ t | slugify }}" aria-pressed="false">{{ t | escape }}</button>
+    {% endfor %}
+  </div>
+  <p class="empty" data-empty hidden>No buses of this type yet. Keep spotting!</p>
+
+  <ul class="grid">
+    {% for bus in buses %}
+    <li class="card" data-type="{{ bus.type | slugify }}">
+      <a href="{{ bus.url | relative_url }}">
+        <div class="card-photo">
+          {% if bus.photo %}<img src="{{ bus.photo | relative_url }}" alt="{{ bus.title | escape }}{% if bus.route %}, route {{ bus.route | escape }}{% endif %}" loading="lazy" decoding="async">{% endif %}
+          {% if bus.route %}<span class="roundel">{{ bus.route | escape }}</span>{% endif %}
+        </div>
+        <div class="card-body">
+          {% if bus.type %}<span class="kicker">{{ bus.type | escape }}</span>{% endif %}
+          <h2>{{ bus.title | escape }}</h2>
+          <p>{{ bus.content | strip_html | truncatewords: 22 }}</p>
+        </div>
+        <div class="card-stub">
+          <span>{% if bus.date %}Spotted {{ bus.date | date: "%-d %b %Y" }}{% endif %}</span>
+          <span class="more">Read more →</span>
+        </div>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="empty">No buses yet. The first one is coming soon!</p>
+  {% endif %}
+</main>
+
+<section id="about" class="about">
+  <div class="wrap about-inner">
+    <h2 class="about-sign">{{ site.data.about.heading | default: "About me" | escape }}</h2>
+    <p>{{ site.data.about.text | escape }}</p>
+  </div>
+</section>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+{% if site.hide_from_search %}<meta name="robots" content="noindex, nofollow">
+{% endif %}<title>{% if page.layout == "bus" %}{{ page.title | escape }} · {% endif %}{{ site.title | escape }}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&amp;family=Doto:wght@700;900&amp;display=swap">
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap header-signs">
+    <a class="sign sign-route" href="{{ '/' | relative_url }}" aria-label="Home">{{ site.route_badge | escape }}</a>
+    <div class="sign sign-dest">
+      <p class="site-title">{{ site.title | escape }}</p>
+      <p class="site-tagline">{{ site.tagline | escape }}</p>
+    </div>
+  </div>
+  <nav class="wrap site-nav" aria-label="Main">
+    <a href="{{ '/' | relative_url }}"{% if page.url == "/" %} aria-current="page"{% endif %}>All buses</a>
+    <a href="{{ '/#about' | relative_url }}">About me</a>
+  </nav>
+</header>
+
+{{ content }}
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Photos and words by {{ site.nickname | escape }}.</span>
+    <span>Location info is removed from every photo before it goes online.</span>
+  </div>
+</footer>
+
+<script src="{{ '/assets/js/filter.js' | relative_url }}" defer></script>
+</body>
+</html>
