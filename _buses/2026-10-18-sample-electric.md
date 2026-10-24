@@ -1,5 +1,5 @@
 ---
-title: Sample electric bus (delete me)
+title: Merc EV10
 photo: /media/bus265.jpg
 route: "265"
 destination: Ang Mo Kio interchange
@@ -8,4 +8,4 @@ operator: SBS
 fleet: Unknow
 date: 2026-10-18
 ---
-Another sample. Fields you leave empty, like the fleet number here, simply don't show on the page.
+Bus 265 which provide shuttle service between Yio Chu Kang and Ang Mo Kio. 😊
