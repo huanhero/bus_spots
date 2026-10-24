@@ -1,11 +1,11 @@
 ---
-title: Sample double-decker (delete me)
+title: Volvo V26
 photo: /media/3doors_dd.jpg
-route: "12"
+route: "76"
 destination: Town Centre
 type: Double-decker
 operator: "[Operator]"
 fleet: "[Fleet no.]"
 date: 2026-10-20
 ---
-This is a sample entry so you can see how a bus page looks. Write a sentence or two about where you spotted the bus and what makes it special. Delete this one once you've added your first real bus.
+This bus is special becos it is the first 3 doors double-decker bus
