@@ -1,8 +1,8 @@
 ---
-title: "Sample double-decker (delete me)"
-photo: /media/sample-bus.svg
+title: Sample double-decker (delete me)
+photo: /media/3doors_dd.jpg
 route: "12"
-destination: "Town Centre"
+destination: Town Centre
 type: Double-decker
 operator: "[Operator]"
 fleet: "[Fleet no.]"
