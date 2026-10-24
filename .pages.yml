@@ -1,0 +1,58 @@
+# Pages CMS configuration: defines the editing form.
+# Docs: https://pagescms.org/docs
+
+media:
+  input: media
+  output: /media
+  extensions: [jpg, jpeg, png, webp]
+
+content:
+  - name: buses
+    label: My buses
+    type: collection
+    path: _buses
+    fields:
+      - name: title
+        label: Make & model
+        type: string
+        required: true
+      - name: photo
+        label: Photo
+        type: image
+        required: true
+        description: "Use a JPG or PNG, ideally under 1 MB. Make sure location is off in your camera settings."
+      - name: route
+        label: Route number
+        type: string
+      - name: destination
+        label: Destination (shown on the orange sign)
+        type: string
+      - name: type
+        label: Bus type
+        type: select
+        options:
+          values: [Double-decker, Single-decker, Electric, Coach]
+      - name: operator
+        label: Operator
+        type: string
+      - name: fleet
+        label: Fleet number
+        type: string
+      - name: date
+        label: Date spotted
+        type: date
+      - name: body
+        label: In my words
+        type: rich-text
+
+  - name: about
+    label: About me
+    type: file
+    path: _data/about.yml
+    fields:
+      - name: heading
+        label: Heading
+        type: string
+      - name: text
+        label: About me text
+        type: text
