@@ -1,0 +1,60 @@
+# Photo safety check
+# Runs whenever a photo is added or changed in media/. It does NOT change any
+# files. It fails (red ✗ in the Actions tab, plus an email to the repo owner)
+# if a photo contains GPS location data, is larger than 1 MB, or is in a
+# format web browsers can't show (HEIC).
+
+name: Photo check
+
+on:
+  push:
+    paths:
+      - "media/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-photos:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install exiftool
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq libimage-exiftool-perl
+
+      - name: Check photos
+        run: |
+          problems=0
+          max_bytes=1048576
+          shopt -s nullglob nocaseglob
+
+          for f in media/*; do
+            [ -f "$f" ] || continue
+            case "$f" in
+              *.heic|*.heif)
+                echo "::error file=$f::HEIC photo: browsers can't display this. Re-save it as JPG."
+                problems=$((problems+1))
+                continue ;;
+              *.jpg|*.jpeg|*.png|*.webp|*.tif|*.tiff) ;;
+              *) continue ;;
+            esac
+
+            if exiftool -q -q -if '$GPSLatitude or $GPSLongitude or $GPSPosition' -p '$FileName' "$f" | grep -q .; then
+              echo "::error file=$f::Contains GPS location data. Delete it and upload a copy with location removed."
+              problems=$((problems+1))
+            fi
+
+            size=$(stat -c %s "$f")
+            if [ "$size" -gt "$max_bytes" ]; then
+              echo "::error file=$f::Photo is $((size/1024)) KB, over the 1 MB guideline. Upload a smaller copy."
+              problems=$((problems+1))
+            fi
+          done
+
+          if [ "$problems" -gt 0 ]; then
+            echo "Found $problems problem(s)."
+            exit 1
+          fi
+          echo "All photos look good."
