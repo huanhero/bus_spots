@@ -1,9 +1,9 @@
 # Site settings. Edit the values in quotes; keep the indentation as it is.
 # After a change, GitHub rebuilds the site in about a minute.
 
-title: "[Nickname]'s Bus Spots"
+title: "SJ's Bus Spots"
 tagline: "Via every route in town"
-nickname: "[Nickname]"
+nickname: "SJ_Bus"
 route_badge: "88"            # the number shown in the little LED sign in the header
 
 # Where the site lives: https://huanhero.github.io/bus_spots/
