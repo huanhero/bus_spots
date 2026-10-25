@@ -1,10 +1,10 @@
 ---
-title: Volvo V26
+title: MAN A95 3 DOOR DEMOSTRATER
 photo: /media/3doors_dd.jpg
-route: "76"
-destination: Town Centre
+route: OFF SVC
+destination: NIS
 type: Double-decker
-operator: "[Operator]"
+operator: Tower Transit
 fleet: "[Fleet no.]"
 date: 2026-10-20
 ---
