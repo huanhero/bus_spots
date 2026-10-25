@@ -1,10 +1,10 @@
 ---
-title: Merc EV10
+title: MAN A22 EURO 5
 photo: /media/bus265.jpg
 route: "265"
 destination: Ang Mo Kio interchange
-type: Electric
-operator: SBS
+type: Single-decker
+operator: SBS Transit
 fleet: Unknow
 date: 2026-10-18
 ---
